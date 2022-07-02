@@ -1,0 +1,27 @@
+spring:
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      format_sql: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/online-library
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+logging:
+  file:
+    name: E:\JavaProjects\SprignBootLibrary\log\app.log
+  pattern:
+    file: "%d{HH:mm:ss} %-2p [%c] - %m%n"
+
+#  level:
+#    ROOT: error
+#    org.springframework: warn
+#    javax.faces: warn
+#    org.omnifaces: warn
+#    org.springframework.security: warn
+#    org.hibernate: warn
+#    org.hibernate.type.descriptor.sql: warn
