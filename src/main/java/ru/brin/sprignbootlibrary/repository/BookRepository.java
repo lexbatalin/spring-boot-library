@@ -38,9 +38,9 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     void updateViewCount(@Param("view_count") long viewCount, @Param("id") long id);
 
     @Modifying(clearAutomatically = true)
-    @Query("update book set avg_rating = :avgRating, " +
+    @Query(value = "update book set avg_rating = :avgRating, " +
             "total_vote_count = :totalVoteCount, " +
-            "total_rating = :totalRating where id = :id")
+            "total_rating = :totalRating where id = :id", nativeQuery = true)
     void updateRating(@Param("avgRating") Long avgRating, @Param("totalVoteCount") Long totalVoteCount,
                       @Param("totalRating") Long totalRating, @Param("id") Long id);
 }
