@@ -15,4 +15,8 @@ public interface BookDao extends CrudDao<Book>, SearchDao<Book> {
     byte[] getContentById(long id);
 
     Page<Book> getBookByGenre(int pageNumber, int pageSize, Sort.Direction sortDirection, long genreId);
+
+    Long updateBookViewById(long currentView, long bookId);
+
+    void updateRatingById(long avgRating, long totalVoteCount, long totalRating, long id);
 }

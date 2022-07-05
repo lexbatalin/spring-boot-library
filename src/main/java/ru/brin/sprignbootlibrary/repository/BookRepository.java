@@ -30,4 +30,17 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query(value = "select ru.brin.sprignbootlibrary.domain.Book(b.id, b.image) from Book b", nativeQuery = true)
     List<Book> findTopBooks(Pageable pageable);
 
+    @Query(value = "select view_count from book where id = :id", nativeQuery = true)
+    Long findViewCount(@Param("id") long id);
+
+    @Modifying(clearAutomatically = true)
+    @Query(value = "update book set view_count = :view_count where id = :id", nativeQuery = true)
+    void updateViewCount(@Param("view_count") long viewCount, @Param("id") long id);
+
+    @Modifying(clearAutomatically = true)
+    @Query("update book set avg_rating = :avgRating, " +
+            "total_vote_count = :totalVoteCount, " +
+            "total_rating = :totalRating where id = :id")
+    void updateRating(@Param("avgRating") Long avgRating, @Param("totalVoteCount") Long totalVoteCount,
+                      @Param("totalRating") Long totalRating, @Param("id") Long id);
 }
